@@ -40,21 +40,25 @@ function userPoint(array){
 }
 
 
-var numberGenerated;
+
 
 var difficultChoice = parseInt(prompt('Quale grado di difficoltà desideri?Scegli un valore da 1 a 3'))
+var min = 1;
+var max;
 
-switch (difficultChoice) {
-  case '1': numberGenerated = randomNumber(1,100)
+switch (difficultChoice)
+{
+  case 1: var max = 100;   // SWITCH CASE
    break;
 
-  case '2': numberGenerated = randomNumber(1, 80)
+  case 2: var max = 80;
     break;
 
-  case '3': numberGenerated = randomNumber(1, 50)
+  case 3: var max = 50;
     break;
-    
-  default: numberGenerated = randomNumber(1, 100)
+
+  default:
+  var max = 100;
 
 }
 
@@ -65,7 +69,7 @@ switch (difficultChoice) {
 var numberRandomList = [];
 
 while (numberRandomList.length < 16) {
-   numberGenerated;
+   numberGenerated = randomNumber(min, max)
   if (numberRandomList.includes(numberGenerated) === false) {
     numberRandomList.push(numberGenerated)
   }
