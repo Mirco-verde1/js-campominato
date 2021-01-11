@@ -39,11 +39,33 @@ function userPoint(array){
   return alert;
 }
 
+
+var numberGenerated;
+
+var difficultChoice = parseInt(prompt('Quale grado di difficoltà desideri?Scegli un valore da 1 a 3'))
+
+switch (difficultChoice) {
+  case '1': numberGenerated = randomNumber(1,100)
+   break;
+
+  case '2': numberGenerated = randomNumber(1, 80)
+    break;
+
+  case '3': numberGenerated = randomNumber(1, 50)
+    break;
+    
+  default: numberGenerated = randomNumber(1, 100)
+
+}
+
+
+
+
 //genero 16 numeri randomici
 var numberRandomList = [];
 
 while (numberRandomList.length < 16) {
-  var numberGenerated = randomNumber(1, 100)
+   numberGenerated;
   if (numberRandomList.includes(numberGenerated) === false) {
     numberRandomList.push(numberGenerated)
   }
