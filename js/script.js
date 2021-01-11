@@ -36,13 +36,13 @@ function verifyInputInNumberRandom(inputUser , generatednumber){
 //funzione che userò per il punteggio.
 function userPoint(array){
   alert(array.length)
-  return true;
+  return alert;
 }
 
 //genero 16 numeri randomici
 var numberRandomList = [];
 
-while (numberRandomList < 16) {
+while (numberRandomList.length < 16) {
   var numberGenerated = randomNumber(1, 100)
   if (numberRandomList.includes(numberGenerated) === false) {
     numberRandomList.push(numberGenerated)
