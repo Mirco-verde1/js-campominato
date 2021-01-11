@@ -1,79 +1,81 @@
-// Con la funzione randomNumber genero i numeri da 1 a 100
-//Con un ciclo for ne prendo 16
-//Creo un array che verrà popolato dai 16 numeri random
-//Controllo che i numeri non siano ripetuti
 
 
-// FUNZIONE RANDOM
+
+//Funzione con il quale genero numeri randomici
+
 function randomNumber(min, max) {
- var result = Math.floor(Math.random() * (max + 1 - min) + min); //Funzione con il quale genero numeri randomici
+ var result = Math.floor(Math.random() * (max + 1 - min) + min);
  return result;
 }
 
-// FUNZIONE VERIFICA CHE NON CI SIA UN NUMERO DUPLICATO NELL'ARRAY POPOLATA DA NUMERI
-function findDuplicateRandomNum(array){
-  array.slice().sort();
 
-  for (var i = 0; i < array.length; i++) {
-    if(array[i] !== array[i]){
-    return true
- }
-    else {
-    return false;
+ //Verifico se il valore inserito sia valido per il gioco, quindi numerico e nel range di numeri possibili
+function inputValidNumber(inputnumber){
+  if (isNaN(inputnumber)) {
+    return false
   }
-}
-};
+  if (inputnumber > 100 || inputnumber <= 0) {
+    return false
+  }
 
-//FUNZIONE PER VERIFICARE SE UN NUMERO è CONTENUTO IN UN ARRAY,QUINDI SE L'UTENTE POSSA VINCERE O PERDERE
-function verifyElementInArray(array1 , array2){
-  for (var y = 0; y < array1.length; i++) {
-    array1[y];
-  }
-  for (var j = 0; j < array2.length; i++) {
-    array2[j];
-  }
-  if ((array[y]) === (array2[j])) {
     return true;
+}
+
+
+//Funzione con il quale verifico che i numeri inseriti dall'utente siano prensenti o no nell'array di numeri randomici.
+function verifyInputInNumberRandom(inputUser , generatednumber){
+  if (generatednumber.includes(inputUser)) {
+    return false;
   }
   else {
-    return false;
+    return true;
   }
-  };
-
-//PRENDO 16 NUMERI RANDOM E CON ESSI POPOLO IL MIO ARRAY;
-var numberTimeRandomContainer = [];
-for (var i = 0; i < 16; i++) {
-  var numberTimeRandom = randomNumber(1, 100);
-  numberTimeRandomContainer.push(numberTimeRandom);
 }
 
 
-//CONTROLLO CHE NON CI SIANO DUPLICATI
-
- if (findDuplicateRandomNum(numberTimeRandomContainer)) {    //TO DO (DA RIVEDERE)
-   alert('Puoi continuare')
- }else {
-   alert('Riavvia il gioco,abbiamo un doppione!')
- }
-
-
-
-// CHIEDO ALL'UTENTE DI INSERIRE UN NUMERO
-
-var inputNumberContainer = [];
-
-while
- (verifyElementInArray(numberTimeRandomContainer , inputNumberContainer)) {
-
-   for (var i = 0; i < 5; i++) {
-     var inputNumber = (parseInt(prompt('Inserisci il tuo numero!')))
-     inputNumberContainer.push(inputNumber);
-
-}if (true) {
-  alert('hai vinto')
-}else {
-  alert('tenta ancora')
+//funzione che userò per il punteggio.
+function userPoint(array){
+  alert(array.length)
+  return true;
 }
 
+//genero 16 numeri randomici
+var numberRandomList = [];
 
+while (numberRandomList < 16) {
+  var numberGenerated = randomNumber(1, 100)
+  if (numberRandomList.includes(numberGenerated) === false) {
+    numberRandomList.push(numberGenerated)
+  }
+};
+
+
+var attemptsAllowed = 84; //tentativi consentiti per la vincita (100 - 16).
+//Basterà sostituire questo valore se dovesse cambiare la possibilità di tentativi
+
+var inputNumberList = [];
+var userInputNumber;
+
+
+while (inputNumberList.length < attemptsAllowed && verifyInputInNumberRandom(userInputNumber , numberRandomList)) {
+
+  userInputNumber =  (parseInt(prompt('Inserisci il tuo numero da 1 a 100')))
+  if (inputValidNumber(userInputNumber)) {
+
+    if (inputNumberList.includes(userInputNumber) === true) {
+      alert('Questo numero è già stato inserito')
+    }
+    else {
+    if (verifyInputInNumberRandom(userInputNumber , numberRandomList) === false) {
+      alert('Hai perso,ritenta!')
+    }
+    inputNumberList.push(userInputNumber);
+
+    }
+
+  }if (inputNumberList.length === 84) {
+    alert('Hai vinto!')
+  }
 }
+
+userPoint(inputNumberList);
